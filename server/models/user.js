@@ -25,7 +25,6 @@ const userSchema = new mongoose.Schema({
 
     contactNo:{
         type:String,
-        required:true,
     },
 
     role:{
@@ -40,6 +39,10 @@ const userSchema = new mongoose.Schema({
             ref:"Item"
         }
     ],
+
+    token:{
+        type:String,
+    }
 
 
 });

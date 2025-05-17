@@ -4,9 +4,12 @@ const {Server} = require("socket.io");
 const dotenv = require('dotenv');
 const {createServer} = require("http");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 dotenv.config();
+app.use(cookieParser());
+app.use(express.json());
 
 
 // files import 
@@ -26,18 +29,18 @@ app.use("/galipulse/app-1.0",route);
 
 app.use(cors({
     origin:"http://localhost:5173",
-    methods:["GET","PUSH","PUT","DELETE"],
+    methods:["GET","POST","PUT","DELETE"],
     Credential:true,
 }))
 
 
 app.get('/',(req,res)=>{
-    res.send("Hello User")
+    res.send("Hello User");
 })
 
 // server listening
 const server = createServer(app);
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 5000;
 server.listen(PORT,()=>{
     console.log("server started at:",PORT);
 });
@@ -47,7 +50,7 @@ server.listen(PORT,()=>{
 const io = new Server(server,{
     cors:{
         origin:"http://localhost:5173",
-        methods:["GET","PUSH","PUT","DELETE"],
+        methods:["GET","POST","PUT","DELETE"],
         Credential:true,
     }
 });

@@ -1,0 +1,27 @@
+{
+  "name": "projects",
+  "version": "1.0.0",
+  "description": "data > username,emial,password,phone,role,(country,state,city > USING navigatorAPI,);\r item shchema > userid,productname,category,info{price,imgurls,rating},location >[lat,lng],",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:client": "npm start --prefix client",
+    "start:server": "npm run dev --prefix server",
+    "dev": "concurrently -n \"client,server\" -c \"bgBlue,bgYellow\" \"npm run start:client\" \"npm run start:server\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sachinkumar8439/GaliPulse.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sachinkumar8439/GaliPulse/issues"
+  },
+  "homepage": "https://github.com/Sachinkumar8439/GaliPulse#readme",
+  "dependencies": {
+    "concurrently": "^9.1.2",
+    "react-icons": "^5.5.0"
+  }
+}

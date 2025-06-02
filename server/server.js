@@ -1,60 +1,55 @@
-// packeges import 
+// Package imports
 const express = require("express");
-const {Server} = require("socket.io");
-const dotenv = require('dotenv');
-const {createServer} = require("http");
+const { Server } = require("socket.io");
+const dotenv = require("dotenv");
+const { createServer } = require("http");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
+// Initialize app and environment
 const app = express();
 dotenv.config();
 app.use(cookieParser());
 app.use(express.json());
 
-
-// files import 
+// Files import
 const SocketConnection = require("./controllers/socket");
 const route = require("./routes/route");
 const databaseConnect = require("./configue/database");
 
-
-
-// database connection
+// Database connection
 databaseConnect();
 
+// CORS configuration
+app.use(
+  cors({
+    origin: "http://localhost:3000", // Frontend origin
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Corrected the typo
+  })
+);
 
-// routes using
-app.use("/galipulse/app-1.0",route);
+// Routes
+app.use("/galipulse/app-1.0", route);
 
+app.get("/", (req, res) => {
+  res.send("Hello User");
+});
 
-app.use(cors({
-    origin:"http://localhost:5173",
-    methods:["GET","POST","PUT","DELETE"],
-    Credential:true,
-}))
-
-
-app.get('/',(req,res)=>{
-    res.send("Hello User");
-})
-
-// server listening
+// Server listening
 const server = createServer(app);
 const PORT = process.env.PORT || 5000;
-server.listen(PORT,()=>{
-    console.log("server started at:",PORT);
+server.listen(PORT, () => {
+  console.log("server started at:", PORT);
 });
 
-
-// socket setup 
-const io = new Server(server,{
-    cors:{
-        origin:"http://localhost:5173",
-        methods:["GET","POST","PUT","DELETE"],
-        Credential:true,
-    }
+// Socket.io setup
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Corrected the typo
+  },
 });
 
-io.on("connection",SocketConnection);
-
-
+io.on("connection", SocketConnection);

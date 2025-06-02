@@ -1,80 +1,111 @@
 import React from "react";
-import image from "./buyer_seller_connect.png"
+import { NavLink, useNavigate } from "react-router-dom";
+import image from "./buyer_seller_connect.png";
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
   return (
-    <div className="bg-gradient-to-b from-blue-900 to-blue-800 text-white min-h-screen">
-      <div className="max-w-6xl mx-auto px-4 py-12">
-        {/* Navbar */}
-        <nav className="flex justify-between items-center mb-10">
-          <h1 className="text-3xl font-bold">GaliPulse</h1>
-          <div className="space-x-6">
-            <a href="#" className="text-lg hover:text-purple-300">
+    <div className="bg-gray-50 text-gray-900 min-h-screen flex flex-col">
+      {/* Navbar */}
+      <nav className="bg-white shadow-md sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+          <h1 className="text-3xl font-bold text-blue-700">GaliPulse</h1>
+          <div className="flex items-center space-x-6">
+            <a href="#" className="text-gray-700 hover:text-blue-700">
               Browse
             </a>
-            <a href="#" className="text-lg hover:text-purple-300">
+            <a href="#" className="text-gray-700 hover:text-blue-700">
               About
             </a>
-            <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-sm">
+            <NavLink className="px-4 py-2 bg-blue-700 text-white rounded hover:bg-blue-800"
+              to="/log-in"
+            >
               Log in
+            </NavLink>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <header className="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-16">
+        {/* Text Content */}
+        <div className="flex-1 text-center lg:text-left">
+          <h2 className="text-4xl lg:text-6xl font-bold text-blue-900 leading-snug">
+            Connecting Buyers and Sellers
+          </h2>
+          <p className="mt-4 text-lg text-gray-700">
+            Fulfill your needs by connecting with trusted local sellers who
+            deliver quality goods and services directly to you.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row justify-center lg:justify-start space-y-4 sm:space-y-0 sm:space-x-4">
+            <button className="px-6 py-3 bg-blue-700 text-white rounded-lg shadow hover:bg-blue-800">
+              Continue with Google
+            </button>
+            <button
+              onClick={() => navigate("/sign-up")}
+              className="px-6 border-2 border-black py-3 bg-gray-200 text-gray-800 rounded-lg shadow hover:bg-blue-500"
+            >
+              Continue with Email
             </button>
           </div>
-        </nav>
+        </div>
 
-        {/* Hero Section */}
-        <header className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-10">
-          <div className="flex-1 text-center lg:text-left">
-            <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-              Connecting Buyers and Sellers
-            </h2>
-            <p className="text-lg mb-6">
-              Fulfill your needs by connecting with local sellers who deliver
-              directly to you.
-            </p>
-            <div className="flex flex-col sm:flex-row sm:space-x-4 mb-6">
-              <input
-                type="text"
-                placeholder="Search for products..."
-                className="flex-grow px-4 py-2 rounded bg-blue-700 placeholder-blue-400 text-white focus:outline-none"
-              />
-              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">
-                Post a Need
-              </button>
-              <button className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white">
-                Fulfill a Need
-              </button>
+        {/* Image */}
+        <div className="flex-1 mt-10 lg:mt-0 flex justify-center">
+          <img
+            src={image}
+            alt="Connecting Buyers and Sellers"
+            className="w-3/4 lg:w-2/3 rounded-lg shadow-lg"
+          />
+        </div>
+      </header>
+
+      {/* Features Section */}
+      <section className="bg-white py-16">
+        <div className="max-w-6xl mx-auto px-6">
+          <h3 className="text-3xl font-bold text-center text-blue-900">
+            Why Choose GaliPulse?
+          </h3>
+          <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+              <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                Local Connections
+              </h4>
+              <p className="text-gray-600">
+                Discover and connect with local sellers to meet your needs
+                quickly and efficiently.
+              </p>
+            </div>
+            <div className="p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+              <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                Trusted Sellers
+              </h4>
+              <p className="text-gray-600">
+                Work with verified sellers for reliable and high-quality
+                services.
+              </p>
+            </div>
+            <div className="p-6 bg-gray-50 rounded-lg shadow hover:shadow-md transition">
+              <h4 className="text-xl font-semibold text-gray-800 mb-3">
+                Seamless Transactions
+              </h4>
+              <p className="text-gray-600">
+                Enjoy smooth and secure transactions with robust technology.
+              </p>
             </div>
           </div>
-          <div className="flex-1">
-            <img
-              src={image}
-              alt="Connecting Buyers and Sellers"
-              className="rounded-lg shadow-lg"
-              width="70%"
-            />
-          </div>
-        </header>
+        </div>
+      </section>
 
-        {/* Categories Section */}
-        <section className="mt-12">
-          <h3 className="text-2xl font-bold mb-6">Categories</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <CategoryCard title="Produce" icon="🍎" />
-            <CategoryCard title="Handmade" icon="🛠️" />
-            <CategoryCard title="Electronics" icon="💻" />
-            <CategoryCard title="Clothing" icon="👕" />
-          </div>
-        </section>
-      </div>
+      {/* Footer */}
+      <footer className="bg-gray-100 py-6">
+        <div className="max-w-6xl mx-auto text-center text-sm text-gray-600">
+          © 2025 GaliPulse. All rights reserved.
+        </div>
+      </footer>
     </div>
   );
 };
-
-const CategoryCard = ({ title, icon }) => (
-  <div className="flex flex-col items-center bg-blue-700 p-4 rounded-lg shadow-lg">
-    <div className="text-4xl mb-2">{icon}</div>
-    <h4 className="text-lg font-bold">{title}</h4>
-  </div>
-);
 
 export default LandingPage;

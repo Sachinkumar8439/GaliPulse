@@ -132,12 +132,16 @@ export default function Mappage({handleconnect , users,userposition , handleview
 
   return (
     <div ref={mainRef} className="map-page" style={{ width: `100%`, height: `100%`, overflowX: 'hidden', position: 'relative',}}>
-      <div style={{width:`${mapsize.width}%`,height:`${mapsize.height}%`,transition: "height 0.3s ease",overflowX:'hidden',overflowY:'hidden' }}>
+      <div 
+      style={{width:`${mapsize.width}%`,height:`${mapsize.height}vh`,transition: "height 0.3s ease",overflowX:'hidden',overflowY:'hidden' }}
+      >
       <MapContainer
         center={users[0].position}
         zoom={13}
         style={{ height: '100%', width: '100%' }}
-        whenReady={() => setMapLoaded(true)}
+        whenReady={() => {setMapLoaded(true);
+          console.log("map loaded")
+        }}
         >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

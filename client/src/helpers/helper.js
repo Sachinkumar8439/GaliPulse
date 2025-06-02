@@ -18,14 +18,14 @@ async function getCurrentLocation() {
     try {
         const position = await fetchLocation();
         console.log("First attempt succeeded:", position.coords);
-        return { success: true, location: { lat: position.coords.latitude, lng: position.coords.longitude } };
+        return { success: true, location: { latitude: position.coords.latitude, longitude: position.coords.longitude } };
     } catch (error) {
         console.warn("First attempt failed. Retrying...", error);
 
         try {
             const position = await fetchLocation();
             console.log("Second attempt succeeded:", position.coords);
-            return { success: true, location: { lat: position.coords.latitude, lng: position.coords.longitude } };
+            return { success: true, location: { latitude: position.coords.latitude, longitude: position.coords.longitude } };
         } catch (error) {
             console.error("Second attempt also failed.", error);
             return { success: false };
